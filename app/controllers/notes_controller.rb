@@ -55,6 +55,6 @@ class NotesController < ApplicationController
   end
 
   def note_params
-    params[:note].permit(:title, :text)
+      params[:note].permit(:title, :text, :timestamp)
   end
 end

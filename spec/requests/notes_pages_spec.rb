@@ -10,7 +10,7 @@ describe 'Notes pages' do
     end
 
     it 'lists all notes' do
-      note = FactoryGirl.create(:note, title: 'Hello', text: 'world!')
+        note = FactoryGirl.create(:note, title: 'Hello', text: 'world!', time: '5:00')
 
       visit notes_path
 
@@ -40,7 +40,7 @@ describe 'Notes pages' do
     describe 'with search string' do
       it 'lists all found notes' do
         note = FactoryGirl.create(:note, title: 'Hello', text: 'world!')
-        other_note = FactoryGirl.create(:note, title: 'Not relevant', text: 'Not relevant')
+          other_note = FactoryGirl.create(:note, title: 'Not relevant', text: 'Not relevant', timestamp: '5:00')
 
         visit notes_path
         fill_in :search, with: 'Hello'
@@ -53,7 +53,7 @@ describe 'Notes pages' do
 
       it 'provides instant search (ajax)', js: true do
         note = FactoryGirl.create(:note, title: 'Hello', text: 'world!')
-        other_note = FactoryGirl.create(:note, title: 'Not relevant', text: 'Not relevant')
+        other_note = FactoryGirl.create(:note, title: 'Not relevant', text: 'Not relevant', timestamp: '5:00')
 
         visit note_path(other_note)
         fill_in :search, with: 'Hello'
@@ -108,12 +108,13 @@ describe 'Notes pages' do
     end
 
     it 'escapes html characters' do
-      note = FactoryGirl.create(:note, title: '<h1>Test</h1>', text: "<html>test</html>")
+      note = FactoryGirl.create(:note, title: '<h1>Test</h1>', text: "<html>test</html>", timestamp: "<h2>5:00<h2>")
 
       visit note_path(note)
 
       expect(page).to have_selector 'h3', text: '<h1>Test</h1>'
       expect(page).to have_content '<html>test</html>'
+      expect(page).to have_content '<h2>5:00</h2>'
     end
 
     it 'shows note text as preformated text' do
@@ -170,6 +171,7 @@ describe 'Notes pages' do
 
         expect(page.current_path).to eq note_path(Note.last)
       end
+        
     end
   end
 
@@ -195,7 +197,7 @@ describe 'Notes pages' do
 
     describe 'note update with valid information' do
       it 'updates note' do
-        note = FactoryGirl.create(:note, title: 'Hello', text: 'world!')
+          note = FactoryGirl.create(:note, title: 'Hello', text: 'world!' timestamp: '5:00')
 
         visit edit_note_path(note)
         fill_in 'Title', with: 'Lorem'
