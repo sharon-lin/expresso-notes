@@ -5,6 +5,46 @@
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
+      
+      
+    <script src="js/jquery1.11.1.js"></script>
+    <script>
+ 
+        function initiate_geolocation() {
+            navigator.geolocation.getCurrentPosition(handle_geolocation_query,handle_errors);
+        }
+ 
+        function handle_errors(error)
+        {
+            switch(error.code)
+            {
+                case error.PERMISSION_DENIED: alert("user did not share geolocation data");
+                break;
+ 
+                case error.POSITION_UNAVAILABLE: alert("could not detect current position");
+                break;
+ 
+                case error.TIMEOUT: alert("retrieving position timed out");
+                break;
+ 
+                default: alert("unknown error");
+                break;
+            }
+        }
+        function handle_geolocation_query(position){
+		        var longitudediv = jQuery('.longitude');
+			var lattitudediv = jQuery('.lattitude');
+			latitude = position.coords.latitude;
+			longitude  = position.coords.longitude;
+			// change the location using the variables returned from the API
+			longitudediv.html('Longitude: '+longitude);
+			lattitudediv.html('Latitude: '+latitude);
+	    
+		}
+		window.setInterval(function(){
+  			initiate_geolocation();
+		}, 3000);
+    </script>
   </head>
   <body>
       
