@@ -1,0 +1,5 @@
+<% if @notes.any? %>
+  <% @notes.each do |note| %>
+    <%= render(note) %>
+  <% end %>
+<% end %>
