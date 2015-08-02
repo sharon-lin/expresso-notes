@@ -90,13 +90,54 @@ function showPosition(position) {
   <p>
 </div>
 
-<button onclick="myFunction(event)">Location</button>
+<button onclick="myFunction(event)">Timestamp</button>
 
-<span id="demo"></span>
+<script type="text/javascript">
+function startTime()
+{
+var today=new Date();
+var h=today.getHours();
+var m=today.getMinutes();
+var s=today.getSeconds();
+// add a zero in front of numbers<10
+m=checkTime(m);
+s=checkTime(s);
+document.getElementById('txt').innerHTML=h+":"+m+":"+s;
+t=setTimeout('startTime()',500);
+}
+function checkTime(i)
+{
+if (i<10)
+{
+i="0" + i;
+}
+return i;
+}
+</script>
+</head>
+<body onload="startTime()">
+<div id="txt"></div>
 
 <button onclick="getLocation()">Location</button>
 
-<span id="demo"></span>
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;	
+}
+</script>
 
   <%= f.label :text %>
   <%= f.text_area :text, class: 'input-block-level', rows: 20 %>
