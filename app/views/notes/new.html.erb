@@ -90,16 +90,17 @@ function showPosition(position) {
   <p>
 </div>
 
-  <%= f.label :text %>
-  <%= f.text_area :text, class: 'input-block-level', rows: 20 %>
-
 <button onclick="myFunction(event)">Location</button>
 
-<p><span id="demo"></span></p>
+<span id="demo"></span>
 
 <button onclick="getLocation()">Location</button>
 
-<p id="demo"></p>
+<span id="demo"></span>
+
+  <%= f.label :text %>
+  <%= f.text_area :text, class: 'input-block-level', rows: 20 %>
+
 
 
   <p>
