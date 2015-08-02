@@ -1,2 +1,0 @@
-DocRaptor.api_key ENV['DOCRAPTOR_API_KEY'] if ENV['DOCRAPTOR_API_KEY']
-
