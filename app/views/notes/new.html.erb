@@ -76,8 +76,31 @@ function myFunction(event) {
   <%= f.label :text %>
   <%= f.text_area :text, class: 'input-block-level', rows: 20 %>
 
-<%= f.label :timestamp %>
-<span id="demo"></span>
+<button onclick="myFunction(event)">Location</button>
+
+<p><span id="demo"></span></p>
+
+<button onclick="getLocation()">Location</button>
+
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;	
+}
+</script>
+
 
   <p>
   <%= f.submit class: 'btn btn-primary', onclick: "myFunction(event)"%>
