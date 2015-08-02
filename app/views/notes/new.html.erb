@@ -40,11 +40,19 @@
   <button id="start_button" onclick="startButton(event)">
     <img id="start_img" src="http://alcotttest.azurewebsites.net/mic.gif" alt="Start"></button>
 </div>
+
+
 <div id="results">
-  <span id="final_span" class="final"></span>
+<%= f.label :text %>
+  <%= f.text_area :text, class: 'input-block-level', id: "final_span", rows: 20 %>
   <span id="interim_span" class="interim"></span>
   <p>
 </div>
+
+
+  <%= f.label :text %>
+  <%= f.text_area :text, class: 'input-block-level', rows: 20 %>
+
 <div class="center">
   <div class="sidebyside" style="text-align:right">
     <button id="copy_button" class="button" onclick="copyButton()">
@@ -68,10 +76,6 @@
     <select id="select_dialect"></select>
   </div>
 </div>
-
-
-  <%= f.label :text %>
-  <%= f.text_area :text, class: 'input-block-level', rows: 20 %>
 
   <p>
   <%= f.submit class: 'btn btn-primary' %>
