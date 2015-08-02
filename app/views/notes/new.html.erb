@@ -1,4 +1,5 @@
 <h1 class="center" id="headline">
+  <a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">
     Web Speech API</a> Demonstration</h1>
 <div id="info">
   <p id="info_start">Click on the microphone icon and begin speaking.</p>
@@ -18,6 +19,11 @@
      Upgrade to <a href="//www.google.com/chrome">Chrome</a>
      version 25 or later.</p>
 </div>
+<div class="right">
+  <button id="start_button" onclick="startButton(event)">
+    <img id="start_img" src="http://alcotttest.azurewebsites.net/mic.gif" alt="Start"></button>
+</div>
+
 
 <%= form_for(@note) do |f| %>
   <% if @note.errors.any? %>
@@ -31,22 +37,29 @@
     </div>
   <% end %>
 
-
-
   <%= f.label :title %>
   <%= f.text_field :title, class: 'input-block-level', autofocus: true %>
 
-<div class="right">
-  <button id="start_button" onclick="startButton(event)">
-    <img id="start_img" src="http://alcotttest.azurewebsites.net/mic.gif" alt="Start"></button>
-</div>
-
 
 <div id="results">
-<%= f.label :text %>
-  <%= f.text_area :text, class: 'input-block-level', id: "final_span", rows: 20 %>
+  <span id="final_span" class="final"></span>
   <span id="interim_span" class="interim"></span>
+  <p>
 </div>
+
+  <%= f.label :text %>
+  <%= f.text_area :text, class: 'input-block-level', rows: 20 %>
+
+  <p>
+  <%= f.submit class: 'btn btn-primary' %>
+  <% if @note.new_record? %>
+    <%= link_to 'Cancel', notes_path, class: 'btn', data: { confirm: 'Really? You will lost your changes.' } %>
+  <% else %>
+    <%= link_to 'Cancel', note_path(@note), class: 'btn', data: { confirm: 'Really? You will lost your changes.' } %>
+  <% end %>
+  </p>
+<% end %>
+
 
 <div class="center">
   <div class="sidebyside" style="text-align:right">
@@ -71,19 +84,6 @@
     <select id="select_dialect"></select>
   </div>
 </div>
-
-  <p>
-  <%= f.submit class: 'btn btn-primary' %>
-  <% if @note.new_record? %>
-    <%= link_to 'Cancel', notes_path, class: 'btn', data: { confirm: 'Really? You will lost your changes.' } %>
-  <% else %>
-    <%= link_to 'Cancel', note_path(@note), class: 'btn', data: { confirm: 'Really? You will lost your changes.' } %>
-  <% end %>
-  </p>
-<% end %>
-
-
-
 <script>
 var langs =
 [['Afrikaans',       ['af-ZA']],
