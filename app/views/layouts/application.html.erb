@@ -63,6 +63,7 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li><%= link_to 'Add Note', new_note_path %></li>
+                <li><%= link_to 'School Notes', new_note_path %></li>
             </ul>
 
             <%= form_tag notes_path, method: 'get', class: 'navbar-form pull-right', remote: true do %>
