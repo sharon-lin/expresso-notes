@@ -21,6 +21,7 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li><%= link_to 'Add Note', new_note_path %></li>
+                <a class="addthis_button_compact"></a>
             </ul>
 
             <%= form_tag notes_path, method: 'get', class: 'navbar-form pull-right', remote: true do %>
