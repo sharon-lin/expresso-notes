@@ -93,16 +93,16 @@ if (!('webkitSpeechRecognition' in window)) {
   recognition.onstart = function() {
     recognizing = true;
     showInfo('info_speak_now');
-    start_img.src = 'mic-animate.gif';
+    start_img.src = 'http://alcotttest.azurewebsites.net/mic-animate.gif';
   };
   recognition.onerror = function(event) {
     if (event.error == 'no-speech') {
-      start_img.src = 'mic.gif';
+      start_img.src = 'http://alcotttest.azurewebsites.net/mic.gif';
       showInfo('info_no_speech');
       ignore_onend = true;
     }
     if (event.error == 'audio-capture') {
-      start_img.src = 'mic.gif';
+      start_img.src = 'http://alcotttest.azurewebsites.net/mic.gif';
       showInfo('info_no_microphone');
       ignore_onend = true;
     }
@@ -120,7 +120,7 @@ if (!('webkitSpeechRecognition' in window)) {
     if (ignore_onend) {
       return;
     }
-    start_img.src = 'mic.gif';
+    start_img.src = 'http://alcotttest.azurewebsites.net/mic.gif';
     if (!final_transcript) {
       showInfo('info_start');
       return;
@@ -208,7 +208,7 @@ function startButton(event) {
   ignore_onend = false;
   final_span.innerHTML = '';
   interim_span.innerHTML = '';
-  start_img.src = 'mic-slash.gif';
+  start_img.src = 'http://alcotttest.azurewebsites.net/mic-slash.gif';
   showInfo('info_allow');
   showButtons('none');
   start_timestamp = event.timeStamp;
