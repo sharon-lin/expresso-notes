@@ -39,7 +39,7 @@
   <%= f.label :title %>
   <%= f.text_field :title, class: 'input-block-level', autofocus: true %>
 
-Timestamp
+<button onclick="myFunction(event)">Timestamp</button>
 
 <script type="text/javascript">
 function startTime()
@@ -63,6 +63,8 @@ i="0" + i;
 return i;
 }
 </script>
+</head>
+<body onload="startTime()">
 <div id="txt"></div>
 
 Location
