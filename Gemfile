@@ -1,69 +1,38 @@
-#-*-ruby-*-
+source 'https://rubygems.org'
+ruby '2.2.1'
 
-source 'http://rubygems.org'
-
-gem 'rails', '~> 3.1.10'
-
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
+gem 'rails', '4.1.0.beta1'
+gem 'jquery-rails', '~> 2.2.1'
+gem 'bootstrap-sass', '~> 2.3.1.0'
+gem 'rails_autolink'
 gem 'pg'
-gem 'redcarpet'
-gem 'sanitize'
-gem 'acts-as-taggable-on', '~> 2.2.2'
-gem 'devise'
-gem 'paper_trail'
-gem 'heroku'
-gem 'texticle', '~> 2.0', :require => 'texticle/rails'
-gem 'stripe'
-gem 'thin'
-gem 'newrelic_rpm'
-gem 'rack-ssl-enforcer'
-gem 'rack-www'
-gem 'delayed_job'
-gem 'delayed_job_web'
-gem 'delayed_job_active_record'
-gem 'mixpanel'
-gem 'memcachier'
-gem 'dalli'
-gem 'aws-s3'
-gem 'devise_oauth2_providable'
-gem 'rack-access-control-headers'
-gem 'acts_as_list'
-gem 'jquery-ui-rails'
-gem 'doc_raptor'
 
-
-# Gems used only for assets and not required
-# in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.1.6'
-  gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier', '>= 1.3.0'
+  gem 'sass-rails',   '~> 4.0.0'
+  gem 'coffee-rails', '~> 4.0.0'
+  gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the web server
-gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
-group :test do
-  # Pretty printed test output
-  gem 'turn', :require => false
-  gem 'minitest'
-  gem 'mocha', :require => false
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :development do
-  gem 'shotgun'
-  gem 'foreman'
+  gem 'annotate'
+  gem 'faker'
+  gem 'spring-commands-rspec'
 end
+
+group :test do
+  gem 'capybara'
+  gem 'launchy'
+  gem 'capybara-webkit'
+  gem 'database_cleaner'
+end
+
+group :production do
+  gem 'rails_12factor'
+end
+
+gem 'turbolinks', '~> 1.1.1'

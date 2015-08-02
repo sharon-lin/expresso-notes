@@ -1,20 +1,51 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+# page:load is for turbolinks
+$(document).bind 'page:load', ->
+  init()
 
-$ ->
-  $("#version_select").change ->
-    path_parts = window.location.pathname.split("/")
-    window.location = "/notes/" + path_parts[2] + "/versions/" + $("#version_select").val()
+jQuery ->
+  init()
 
-  $("#btn-append").tooltip({'title': "Append", 'placement': 'bottom'})
+currentXHR = null
 
-  $("#btn-edit").tooltip({'title': "Edit", 'placement': 'bottom'})
+init = ->
+  # instant search
 
-  $("#btn-share").tooltip({'title': "Share", 'placement': 'bottom'})
+  $('#search').keyup (e) ->
+    if $(this).val().length > 0
+      $('.main-content').hide()
+      $('.ajax-content').show()
+      # disable previous ajax request
+      if currentXHR != null
+        currentXHR.abort()
+      $(this).parents('form').submit()
+    else
+      $('.main-content').show()
+      $('.ajax-content').html('').hide()
 
-  $("#btn-unshare").tooltip({'title': "Unshare", 'placement': 'bottom'})
+  # save ajax request so it can be disabled later
+  $('#search').parents('form').bind 'ajax:beforeSend', (e, jqXHR) ->
+    currentXHR = jqXHR
 
-  $("#btn-info").tooltip({'title': "Info", 'placement': 'bottom'})
 
-  $("#btn-delete").tooltip({'title': "Delete", 'placement': 'bottom'})
+  # I've found following code for 'tab in textarea' somewhere on stack overflow and then 
+  # rewritten it to coffee script. Unfortunately I do not have question URL anymore.
+
+  # allow tab key in textarea
+  $("textarea").keydown (e) ->
+    # 9 is for tab key
+    if e.keyCode == 9
+      # get caret position/selection
+      start = @.selectionStart
+      end = @.selectionEnd
+
+      $this = $(this)
+      value = $this.val()
+
+      # set textarea value to: text before caret + tab + text after caret
+      $this.val("#{value.substring(0, start)}  #{value.substring(end)}")
+
+      # put caret at right position again (add one for the tab)
+      @.selectionStart = @.selectionEnd = start + 2
+
+      # prevent the focus lose
+      e.preventDefault()
