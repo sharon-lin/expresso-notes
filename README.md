@@ -1,35 +1,23 @@
-dictate.js
-==========
+Paperwork - OpenSource note-taking & archiving
+==============================================
 
-__dictate.js__ is a small Javascript library for browser-based real-time speech recognition.
-It uses [Recorderjs](https://github.com/mattdiamond/Recorderjs) for audio capture,
-and a WebSocket connection to the
-[Kaldi GStreamer server](https://github.com/alumae/kaldi-gstreamer-server) for (Estonian and English) speech recognition.
+[![Join the chat at https://gitter.im/twostairs/paperwork](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/twostairs/paperwork?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/twostairs/paperwork.svg?branch=master)](https://travis-ci.org/twostairs/paperwork)
 
-API
----
+<img src="https://raw.githubusercontent.com/twostairs/paperwork/master/paperwork-logo.png" width="250" align="left" />
 
-The API is modelled after [Android's SpeechRecognizer](http://developer.android.com/reference/android/speech/SpeechRecognizer.html).
-See the source code of [lib/dictate.js](lib/dictate.js) and
-the usage in [demos/demo.js](demos/demo.js).
+Paperwork aims to be an open-source, self-hosted alternative to services like Evernote (R), Microsoft OneNote (R) or Google Keep (R).
 
-Running the demos
------------------
+Paperwork is written in PHP, utilising the beautiful Laravel 4 framework. It provides a modern web UI, built on top of AngularJS & Bootstrap 3, as well as an open API for third party integration.
 
-To run the demos on localhost, start a local webservice, e.g.:
+For the back-end part a MySQL database stores everything. With such common requirements (Linux, Apache, MySQL, PHP), Paperwork will be able to run not only on dedicated servers, but also on small to mid-size NAS devices (Synology (R), QNAP (R), etc.).
 
-	python -m SimpleHTTPServer
+## Demo (yes, there is one!)
 
-and then open e.g. <http://localhost:8000/demos/diff.html>.
+At [demo.paperwork.rocks](http://demo.paperwork.rocks) you can actually see the current development status of Paperwork. Every night at 3am (CET) the database is being dropped and newly created, and the latest sources from GitHub are being deployed on the machine.
 
-In order to avoid the repeated request for access to the microphone use
-a https-URL, this works e.g. with Google App Engine.
+Feel free to create/modify/delete accounts, notebooks and notes. This demo can be used for heavy playing without regrets. Just try not to take down that thing. :)
 
-Some demos are available [here](http://kaljurand.github.io/dictate.js/).
+## Getting Started
 
-Browser support
----------------
-
-Known to work in
-  - Google Chrome 36.0.1985.125 on Ubuntu desktop
-  - Google Chrome 37.0.2062.117 on Android
+Ready to install? See the [Wiki](https://github.com/twostairs/paperwork/wiki) for a full list of instructions, FAQ and more!
