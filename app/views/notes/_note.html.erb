@@ -3,6 +3,7 @@
   <div class="text">
     <pre><%= auto_link(h(note.text)) %></pre>
   </div>
+<h3><%= link_to note.timestamp, note_path(note) %></h3>
   <div class="links">
     <%= link_to "Edit", edit_note_path(note), class: 'btn btn-success' %>
     <%= link_to 'Delete', note_path(note), method: 'delete', class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>

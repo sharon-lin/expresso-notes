@@ -10,14 +10,44 @@
     </div>
   <% end %>
 
+<script>
+function myFunction(event) {
+    
+    
+    var str = "";
+
+    var currentTime = new Date()
+    var hours = currentTime.getHours()
+    var minutes = currentTime.getMinutes()
+    var seconds = currentTime.getSeconds()
+
+    if (minutes < 10) {
+        minutes = "0" + minutes
+    }
+    if (seconds < 10) {
+        seconds = "0" + seconds
+    }
+    str += hours + ":" + minutes + ":" + seconds + " ";
+    if(hours > 11){
+        str += "PM"
+    } else {
+        str += "AM"
+    }
+    document.getElementById("demo").innerHTML = str;
+}
+</script>
+
   <%= f.label :title %>
   <%= f.text_field :title, class: 'input-block-level', autofocus: true %>
 
   <%= f.label :text %>
   <%= f.text_area :text, class: 'input-block-level', rows: 20 %>
 
+<%= f.label :timestamp %>
+<span id="demo"></span>
+
   <p>
-  <%= f.submit class: 'btn btn-primary' %>
+  <%= f.submit class: 'btn btn-primary', onclick: "myFunction(event)" %>
   <% if @note.new_record? %>
     <%= link_to 'Cancel', notes_path, class: 'btn', data: { confirm: 'Really? You will lost your changes.' } %>
   <% else %>
