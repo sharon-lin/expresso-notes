@@ -1,0 +1,199 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_tree . 
+ *= require_self
+*/
+.navbar .brand {
+  font-family: "Miss Fajardose", cursive;
+  text-transform: none;
+  font-size: 300%;
+  font-weight: normal;
+}
+.btn, th.header {
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+}
+footer p {
+  margin-left: 2em;
+  margin-right: 2em;
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+}
+
+.hero-unit {
+  background-color: #FFF;
+  border: none;
+  text-align: center;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+.hero-unit {
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+}
+
+.hero-unit p {
+  font-size: 1.5em;
+}
+
+.hero-unit a:hover {
+  text-decoration: none;
+}
+  
+
+.hero-unit h1 {
+  font-family: "Miss Fajardose", cursive;
+  font-size: 10em;
+  margin-top: 20px;
+  font-weight: normal;
+}
+
+.news {
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+}
+
+.big {
+  font-size: 140%;
+  line-height: 150%;
+}
+
+.kinda-big {
+  font-size: 120%;
+  line-height: 140%;
+}
+
+.big ul li {
+  margin-top: 1em;
+}
+
+.kinda-big ul li {
+  margin-top: 0.5em;
+}
+
+.testimonial {
+  text-align: center;
+}
+
+.testimonial p {
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+}
+
+.testimonial h4 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.form-title {
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+  font-size: 2em;
+  font-weight: bold;
+  color: black;
+}
+
+.form-actions {
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 5px;
+  background-color: white;
+  border: none;
+}
+
+label {
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;  
+}
+
+input[type="text"], textarea {
+  color: #555;
+}
+
+ul.nav li div {
+  margin-left: 5px;
+}
+
+div.in ul.nav li div {
+  float: left;
+  display: inline;
+}
+
+.highlight a{
+  color: #00F;
+}
+
+table .header {
+cursor: pointer;
+}
+table .header:after {
+content: "";
+float: right;
+margin-top: 7px;
+border-width: 0 4px 4px;
+border-style: solid;
+border-color: #000 transparent;
+visibility: hidden;
+}
+table .headerSortUp, table .headerSortDown {
+text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+table .header:hover:after {
+visibility: visible;
+}
+table .headerSortDown:after, table .headerSortDown:hover:after {
+visibility: visible;
+filter: alpha(opacity=60);
+-khtml-opacity: 0.6;
+-moz-opacity: 0.6;
+opacity: 0.6;
+}
+table .headerSortUp:after {
+border-bottom: none;
+border-left: 4px solid transparent;
+border-right: 4px solid transparent;
+border-top: 4px solid #000;
+visibility: visible;
+-webkit-box-shadow: none;
+-moz-box-shadow: none;
+box-shadow: none;
+filter: alpha(opacity=60);
+-khtml-opacity: 0.6;
+-moz-opacity: 0.6;
+opacity: 0.6;
+}
+
+
+@media (max-width: 767px) {
+    .sidenav.affix {
+        position: static;
+        width: 100%;
+    }
+}
+
+@media (max-width: 960px) {
+  body {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+.btn {
+  padding-top: 5px;
+  padding-bottom: 8px;
+}
+
+
+table.centered td, table.centered th {
+  text-align: center;
+}
+
+td.featured, th.featured {
+  background-color: #FCF6CF;
+}
+
+.table-striped tbody tr:nth-child(odd) td.featured,
+.table-striped tbody tr:nth-child(odd) th.featured {
+  background-color: #F1EDC2;
+}

@@ -1,0 +1,25 @@
+<%= content_for :title do %>
+<%= @note.title %>
+<% end %>
+
+<h2><%= @note.title %></h2>
+
+<%= @note.rendered_body.html_safe %>
+
+<%= content_for :sidebar do %>
+  <strong>F:</strong> <%= @note.from_address %><br>
+  <strong>C:</strong> <%= @note.created_at %><br>
+  <strong>U:</strong> <%= @note.updated_at %><br>
+  <h4>Tags</h4>
+  <ul>
+    <% @note.tag_list.each do |tag| %>
+    <li><%= tag %></li>
+    <% end %>
+  </ul>
+  <h4>Versions</h4>
+  <ul>
+    <% @note.versions.each do |version| %>
+    <li><%= version.created_at %></li>
+    <% end %>
+  </ul>
+<% end %>

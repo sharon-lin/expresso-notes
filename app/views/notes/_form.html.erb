@@ -1,0 +1,81 @@
+<%= form_for(@note) do |f| %>
+  <% if @show_modal %>
+    <div class="modal hide fade" id="email_modal">
+      <div class="modal-header">
+        <h3>Try Email Features?</h3>
+      </div>
+      <div class="modal-body">
+        <p>Marginalia has <strong><a href="/email" target="_blank">Email integration</a></strong>. You'll receive one email per note that you create. Replying to that email will append to your note. You can also send to <strong>newnote@marginalia.io</strong> from a registered address to create new notes.</p>
+        <p>If you'd like to try out the email features, just put your email address and a password (so you can log back in)  here:</p>
+        <%= f.text_field :new_email_address, :placeholder => "you@example.com" %>
+        <%= f.password_field :new_password, :placeholder => "password" %>
+        <br>
+        <%= f.check_box :newsletter_subscribe %> Subscribe to <strong>at most</strong> once a month updates on Marginalia? We will <strong>never</strong> spam or sell your address.
+      </div>
+      <div class="modal-footer">
+        <%= f.submit :class => "btn", :value => "No thanks, just create a note" %>
+        <%= f.submit :class => "btn btn-success", :value => "Try the email features" %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @note.limit_reached %>
+    <div class="modal hide fade" id="buy_modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>You reached your limit!</h3>
+      </div>
+      <div class="modal-body">
+        <p>Thanks for trying out Marginalia. To create more notes, click the Buy Now button below.</p>
+      </div>
+      <div class="modal-footer">
+        <a href="/plans" class="btn btn-large btn-success"><%= sign_up_button_text %></a>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(function() {$('#buy_modal').modal()});
+    </script>
+  <% end %>
+    
+
+  <% if @note.errors.any? && ! @note.limit_reached %>
+    <div class="alert alert-block alert-error">
+      <h4>Oops!</h4><p><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</p>
+
+      <ul>
+      <% @note.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-actions">
+    <span class="form-title"><%= content_for :note_form_title %></span>
+    <span class="pull-right">
+    <% if @show_modal %>
+    <button type="button" data-toggle="modal" data-target="#email_modal" class="btn btn-success">Create Note</button>    
+    <% else %>
+    <%= f.submit :class => "btn btn-success" %>
+    <% end %>
+    <%= link_to "Cancel", :back, :class => "btn" %>
+    </span>
+  </div>
+
+
+  <label class="control-label">Title</label>
+  <%= f.text_field :title, :class => 'span12' %>
+  <label class="control-label">Body
+  <div class="pull-right"><span id="note-word-count"><%= @note.word_count || 0 %></span> words</div></label>
+  <%= f.text_area :body, :class => 'span12 wordcount', :style => "height: 30em", "data-wordcount-target" => "#note-word-count" %>
+  <label class="control-label">Project</label>
+  <%= f.collection_select :project_id, Project.where(:user_id => current_or_guest_user.id), :id, :name, :prompt => true %>
+  <% if is_admin? %>
+  <label class="control-label">Slug</label>
+  <%= f.text_field :slug, :class => 'span12' %>
+  <% end %>
+  <% unless is_guest? %>
+  <label class="control-label">Email</label>
+  <%= select(:note, :from_address, current_or_guest_user.user_emails.map { |e| e.email }) %>
+  <% end %>
+
+<% end %>
