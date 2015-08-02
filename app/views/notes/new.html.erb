@@ -39,7 +39,7 @@
   <%= f.label :title %>
   <%= f.text_field :title, class: 'input-block-level', autofocus: true %>
 
-<button onclick="myFunction(event)">Timestamp</button>
+<p onclick="myFunction(event)">Timestamp</p> 
 
 <script type="text/javascript">
 function startTime()
@@ -67,8 +67,8 @@ return i;
 <body onload="startTime()">
 <div id="txt"></div>
 
-Location
-
+<p onclick="getLocation()">Location</p> 
+    
 <script type="text/javascript">
 function getLocation() {
     if (navigator.geolocation) {
@@ -87,7 +87,7 @@ document.getElementById('demo').innerHTML="Latitude: " + xyler + "<br>Longitude:
 t=setTimeout('getLocation()',500);
 }
 </script>
-
+<body onload="getLocation()">
 <div id="demo"></div>
 
 
