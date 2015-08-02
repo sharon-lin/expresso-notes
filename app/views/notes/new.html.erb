@@ -20,47 +20,14 @@
      version 25 or later.</p>
 </div>
 <div class="right">
-  <button id="start_button" onclick="startButton(event)">
+  <button id="start_button" onclick="startButton(event);fixall()">
     <img id="start_img" src="http://alcotttest.azurewebsites.net/mic.gif" alt="Start"></button>
 </div>
-
-
-<%= form_for(@note) do |f| %>
-  <% if @note.errors.any? %>
-    <div class="errors">
-      Following errors occured:
-      <ul>
-        <% @note.errors.full_messages.each do |error| %>
-          <li><%= error %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <%= f.label :title %>
-  <%= f.text_field :title, class: 'input-block-level', autofocus: true %>
-
-
 <div id="results">
   <span id="final_span" class="final"></span>
   <span id="interim_span" class="interim"></span>
   <p>
 </div>
-
-  <%= f.label :text %>
-  <%= f.text_area :text, class: 'input-block-level', rows: 20 %>
-
-  <p>
-  <%= f.submit class: 'btn btn-primary' %>
-  <% if @note.new_record? %>
-    <%= link_to 'Cancel', notes_path, class: 'btn', data: { confirm: 'Really? You will lost your changes.' } %>
-  <% else %>
-    <%= link_to 'Cancel', note_path(@note), class: 'btn', data: { confirm: 'Really? You will lost your changes.' } %>
-  <% end %>
-  </p>
-<% end %>
-
-
 <div class="center">
   <div class="sidebyside" style="text-align:right">
     <button id="copy_button" class="button" onclick="copyButton()">
@@ -284,6 +251,9 @@ function emailButton() {
   email_info.style.display = 'inline-block';
   showInfo('');
 }
+function fixall(){
+  document.getElementById('final_span').innerHTML = interim_span;
+}
 function startButton(event) {
   if (recognizing) {
     recognition.stop();
@@ -324,3 +294,4 @@ function showButtons(style) {
   email_info.style.display = 'none';
 }
 </script>
+<%= render('form') %>
