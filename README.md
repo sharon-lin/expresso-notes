@@ -1,13 +1,7 @@
 Notes
 =====
 
-Notes is simple, single user, notes taking app written in Rails 4.
-
-I use it for taking technical notes (snippets of code, unix commands for specific tasks, simple how tos...). It has awesome and super fast instant search so I can find any note in just a second. I use it on daily basis in my work.
-
-Demo
-----
-You can try out our site: 
+You can try out our site: http://obscure-island-8606.herokuapp.com/
 
 Username: dchacks
 Password: expresso
